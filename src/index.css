@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-ping {
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-pink-600 text-white relative overflow-hidden transition-all duration-300 
+           hover:bg-pink-700 hover:shadow-[0_0_20px_rgba(219,39,119,0.5)] 
+           active:scale-95 active:shadow-inner;
+  }
+
+  .btn-primary::before {
+    @apply content-[''] absolute top-1/2 left-1/2 w-0 h-0 -translate-x-1/2 -translate-y-1/2
+           bg-white opacity-30 rounded-full transition-all duration-500 ease-out;
+  }
+
+  .btn-primary:hover::before {
+    @apply w-[300%] h-[300%] opacity-0;
+  }
+
+  .profile-card-btn {
+    @apply bg-pink-600 text-white py-2 rounded-lg text-base font-bold uppercase 
+           transition-all duration-300 relative overflow-hidden
+           hover:bg-pink-700 hover:shadow-lg hover:-translate-y-0.5
+           active:translate-y-0 active:shadow-md;
+  }
+
+  .profile-card-btn::after {
+    @apply content-[''] absolute inset-0 bg-gradient-to-r from-transparent 
+           via-white/20 to-transparent -translate-x-full;
+  }
+
+  .profile-card-btn:hover::after {
+    @apply translate-x-full transition-transform duration-700;
+  }
+}
